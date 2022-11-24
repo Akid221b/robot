@@ -3,7 +3,7 @@ basic.forever(function () {
     if (input.buttonIsPressed(Button.B)) {
         message = 2
         basic.showLeds(`
-            . . # # #
+            . . # # .
             . # . . #
             . . . # .
             . . # . .

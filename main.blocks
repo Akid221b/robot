@@ -1,5 +1,5 @@
 <xml xmlns="https://developers.google.com/blockly/xml"><variables><variable id="4sPfxwc-}#OfpN?!CcgM">message</variable></variables><block type="pxt-on-start" id="Z}^xNQ/T{Nf}cxWU[dkK" x="-337" y="-6"><statement name="HANDLER"><block type="variables_set" id="QJF`fPQ66w:8!8Xay5We"><field name="VAR" id="4sPfxwc-}#OfpN?!CcgM">message</field><value name="VALUE"><shadow type="math_number" id="U0wM1.n}8Fe.$aZcjAuG"><field name="NUM">0</field></shadow></value></block></statement></block><block type="device_forever" id="H,nUuE!?@j~7^^Dw,gT-" x="-371" y="260"><statement name="HANDLER"><block type="controls_if" id="?Rt8:}-vqVpUu/~v^JfT"><value name="IF0"><shadow type="logic_boolean"><field name="BOOL">TRUE</field></shadow><block type="device_get_button2" id="zd7Wdx#eOtw#uHgQxg|]"><field name="NAME">Button.B</field></block></value><statement name="DO0"><block type="variables_set" id="[/paKF-x@8ykhNYXUd4p"><field name="VAR" id="4sPfxwc-}#OfpN?!CcgM">message</field><value name="VALUE"><shadow type="math_number" id=".;h@(j0raz{t5EEceD|("><field name="NUM">2</field></shadow></value><next><block type="device_show_leds" id="oh-@.UK)Hd~erbDy^m`G"><field name="LEDS">`
-        . . # # # 
+        . . # # . 
         . # . . # 
         . . . # . 
         . . # . . 
