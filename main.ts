@@ -16,4 +16,17 @@ basic.forever(function () {
             maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CCW, 10)
         }
     }
+    if (1 == maqueen.readPatrol(maqueen.Patrol.PatrolRight) && 1 == maqueen.readPatrol(maqueen.Patrol.PatrolLeft)) {
+        maqueen.motorRun(maqueen.Motors.All, maqueen.Dir.CW, 100)
+    }
+    if (0 == maqueen.readPatrol(maqueen.Patrol.PatrolRight) && 1 == maqueen.readPatrol(maqueen.Patrol.PatrolLeft)) {
+        maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 0)
+    }
+    if (1 == maqueen.readPatrol(maqueen.Patrol.PatrolRight) && 0 == maqueen.readPatrol(maqueen.Patrol.PatrolLeft)) {
+        maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 0)
+    }
+    if (0 == maqueen.readPatrol(maqueen.Patrol.PatrolRight) && 0 == maqueen.readPatrol(maqueen.Patrol.PatrolLeft)) {
+        maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 20)
+        maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CCW, 20)
+    }
 })
