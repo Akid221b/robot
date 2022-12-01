@@ -48,18 +48,20 @@ basic.forever(function () {
         }
     }
     if (1 == message) {
-        if (1 == maqueen.readPatrol(maqueen.Patrol.PatrolRight) && 1 == maqueen.readPatrol(maqueen.Patrol.PatrolLeft)) {
-            maqueen.motorRun(maqueen.Motors.All, maqueen.Dir.CW, 100)
+        if (0 == maqueen.readPatrol(maqueen.Patrol.PatrolRight) && 0 == maqueen.readPatrol(maqueen.Patrol.PatrolLeft)) {
+            maqueen.motorRun(maqueen.Motors.All, maqueen.Dir.CW, 50)
         }
         if (0 == maqueen.readPatrol(maqueen.Patrol.PatrolRight) && 1 == maqueen.readPatrol(maqueen.Patrol.PatrolLeft)) {
-            maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 0)
-        }
-        if (1 == maqueen.readPatrol(maqueen.Patrol.PatrolRight) && 0 == maqueen.readPatrol(maqueen.Patrol.PatrolLeft)) {
+            maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 30)
             maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 0)
         }
-        if (0 == maqueen.readPatrol(maqueen.Patrol.PatrolRight) && 0 == maqueen.readPatrol(maqueen.Patrol.PatrolLeft)) {
-            maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 20)
-            maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CCW, 20)
+        if (1 == maqueen.readPatrol(maqueen.Patrol.PatrolRight) && 0 == maqueen.readPatrol(maqueen.Patrol.PatrolLeft)) {
+            maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 30)
+            maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 0)
+        }
+        if (1 == maqueen.readPatrol(maqueen.Patrol.PatrolRight) && 1 == maqueen.readPatrol(maqueen.Patrol.PatrolLeft)) {
+            maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 40)
+            maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CCW, 40)
         }
     }
 })
