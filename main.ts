@@ -1,61 +1,13 @@
-let TIEMPO = 0
-let message = 0
-input.onGesture(Gesture.Shake, function () {
-    basic.showIcon(IconNames.Angry)
-    music.startMelody(music.builtInMelody(Melodies.BaDing), MelodyOptions.Once)
-})
-input.onLogoEvent(TouchButtonEvent.Touched, function () {
-    TIEMPO = input.runningTime()
-    if (Math.randomBoolean()) {
-        maqueen.writeLED(maqueen.LED.LEDLeft, maqueen.LEDswitch.turnOn)
-        basic.showIcon(IconNames.Happy)
-        while (TIEMPO) {
-            maqueen.motorStop(maqueen.Motors.M2)
-        }
-        maqueen.writeLED(maqueen.LED.LEDLeft, maqueen.LEDswitch.turnOff)
-        maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 30)
-    } else {
-        maqueen.writeLED(maqueen.LED.LEDRight, maqueen.LEDswitch.turnOn)
-        basic.showIcon(IconNames.Happy)
-        while (TIEMPO) {
-            maqueen.motorStop(maqueen.Motors.M1)
-        }
-        maqueen.writeLED(maqueen.LED.LEDRight, maqueen.LEDswitch.turnOff)
-        maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 30)
-    }
-})
 input.onGesture(Gesture.LogoDown, function () {
     basic.showIcon(IconNames.No)
     music.startMelody(music.builtInMelody(Melodies.Wawawawaa), MelodyOptions.Once)
 })
-basic.forever(function () {
-    if (input.buttonIsPressed(Button.B)) {
-        message = 2
-        basic.showLeds(`
-            . . # # .
-            . # . . #
-            . . . # .
-            . . # . .
-            . # # # #
-            `)
-        while (input.buttonIsPressed(Button.B)) {
-            break;
-        }
-    }
-    if (input.buttonIsPressed(Button.A)) {
-        message = 1
-        while (input.buttonIsPressed(Button.A)) {
-            basic.showLeds(`
-                . . # . .
-                . # # . .
-                . . # . .
-                . . # . .
-                . # # # .
-                `)
-            break;
-        }
-    }
+input.onGesture(Gesture.FreeFall, function () {
+    basic.showIcon(IconNames.Angry)
+    music.startMelody(music.builtInMelody(Melodies.BaDing), MelodyOptions.Once)
 })
+let message = 0
+radio.setGroup(1)
 basic.forever(function () {
     if (2 == message) {
         if (20 < maqueen.Ultrasonic(PingUnit.Centimeters)) {
@@ -89,8 +41,36 @@ basic.forever(function () {
             maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 0)
         }
         if (1 == maqueen.readPatrol(maqueen.Patrol.PatrolRight) && 1 == maqueen.readPatrol(maqueen.Patrol.PatrolLeft)) {
-            maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 40)
             maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CCW, 40)
+            maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 40)
+        }
+    }
+})
+basic.forever(function () {
+    if (2 == radio.receivedPacket(RadioPacketProperty.SignalStrength)) {
+        message = 2
+        basic.showLeds(`
+            . . # # .
+            . # . . #
+            . . . # .
+            . . # . .
+            . # # # #
+            `)
+        while (0 == radio.receivedPacket(RadioPacketProperty.SignalStrength)) {
+            break;
+        }
+    }
+    if (1 == radio.receivedPacket(RadioPacketProperty.SignalStrength)) {
+        message = 1
+        while (1 == radio.receivedPacket(RadioPacketProperty.SignalStrength)) {
+            basic.showLeds(`
+                . . # . .
+                . # # . .
+                . . # . .
+                . . # . .
+                . # # # .
+                `)
+            break;
         }
     }
 })
