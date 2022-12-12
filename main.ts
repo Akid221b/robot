@@ -1,3 +1,33 @@
+radio.onReceivedNumber(function (receivedNumber) {
+    if (2 == receivedNumber) {
+        message = 2
+        basic.showLeds(`
+            . . # # .
+            . # . . #
+            . . . # .
+            . . # . .
+            . # # # #
+            `)
+        music.startMelody(music.builtInMelody(Melodies.Blues), MelodyOptions.Forever)
+        while (2 == receivedNumber) {
+            break;
+        }
+    }
+    if (1 == receivedNumber) {
+        message = 1
+        basic.showLeds(`
+            . . # . .
+            . # # . .
+            . . # . .
+            . . # . .
+            . # # # .
+            `)
+        music.startMelody(music.builtInMelody(Melodies.Funk), MelodyOptions.Forever)
+        while (1 == receivedNumber) {
+            break;
+        }
+    }
+})
 input.onGesture(Gesture.LogoDown, function () {
     basic.showIcon(IconNames.No)
     music.startMelody(music.builtInMelody(Melodies.Wawawawaa), MelodyOptions.Once)
@@ -7,6 +37,7 @@ input.onGesture(Gesture.FreeFall, function () {
     music.startMelody(music.builtInMelody(Melodies.BaDing), MelodyOptions.Once)
 })
 let message = 0
+message = 0
 radio.setGroup(1)
 basic.forever(function () {
     if (2 == message) {
@@ -41,36 +72,13 @@ basic.forever(function () {
             maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 0)
         }
         if (1 == maqueen.readPatrol(maqueen.Patrol.PatrolRight) && 1 == maqueen.readPatrol(maqueen.Patrol.PatrolLeft)) {
-            maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CCW, 40)
-            maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 40)
-        }
-    }
-})
-basic.forever(function () {
-    if (2 == radio.receivedPacket(RadioPacketProperty.SignalStrength)) {
-        message = 2
-        basic.showLeds(`
-            . . # # .
-            . # . . #
-            . . . # .
-            . . # . .
-            . # # # #
-            `)
-        while (0 == radio.receivedPacket(RadioPacketProperty.SignalStrength)) {
-            break;
-        }
-    }
-    if (1 == radio.receivedPacket(RadioPacketProperty.SignalStrength)) {
-        message = 1
-        while (1 == radio.receivedPacket(RadioPacketProperty.SignalStrength)) {
-            basic.showLeds(`
-                . . # . .
-                . # # . .
-                . . # . .
-                . . # . .
-                . # # # .
-                `)
-            break;
+            if (true == Math.randomBoolean()) {
+                maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CCW, 40)
+                maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 40)
+            } else {
+                maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CCW, 40)
+                maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 40)
+            }
         }
     }
 })
