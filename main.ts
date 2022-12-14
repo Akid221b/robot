@@ -63,6 +63,15 @@ basic.forever(function () {
         }
         if (5 > maqueen.Ultrasonic(PingUnit.Centimeters)) {
             maqueen.motorStop(maqueen.Motors.All)
+            radio.sendNumber(0)
+            if (4 == receivedNumber) {
+                maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 40)
+                maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CCW, 40)
+            }
+            if (5 == receivedNumber) {
+                maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 40)
+                maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CCW, 40)
+            }
         }
     }
     if (1 == message) {
